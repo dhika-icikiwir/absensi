@@ -1,12 +1,12 @@
 <?php
 include "../koneksi.php";
-// 1. Statistik Lengkap (COUNT & SUM)
+// 1. Statistik (COUNT & SUM)
 $sql_stat = "SELECT 
     COUNT(*) as total, 
-    SUM(CASE WHEN kehadiran='hadir' THEN 1 ELSE 0 END) as h,
-    SUM(CASE WHEN kehadiran='sakit' THEN 1 ELSE 0 END) as s,
-    SUM(CASE WHEN kehadiran='izin' THEN 1 ELSE 0 END) as i,
-    SUM(CASE WHEN kehadiran='alpa' THEN 1 ELSE 0 END) as a
+    SUM(kehadiran='hadir') as h,
+    SUM(kehadiran='sakit') as s,
+    SUM(kehadiran='izin') as i,
+    SUM(kehadiran='alpa') as a
     FROM absen";
 $stat = mysqli_fetch_assoc(mysqli_query($conn, $sql_stat));
 
