@@ -1,6 +1,6 @@
 <?php
 include "../../koneksi.php";
-$query = mysqli_query($conn, "SELECT siswa.*, user.username FROM siswa LEFT JOIN user ON siswa.id_user = user.id_user");
+$query = mysqli_query($conn, "SELECT siswa.*, user.username FROM siswa JOIN user ON siswa.id_user = user.id_user");
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,9 +18,10 @@ $query = mysqli_query($conn, "SELECT siswa.*, user.username FROM siswa LEFT JOIN
         <tr>
             <th>ID</th><th>Nama Siswa</th><th>NIS</th><th>Jenis Kelamin</th><th>Tanggal Lahir</th><th>Alamat</th><th>Nomor Telepon</th><th>Ditambahkan Oleh</th><th>Aksi</th>
         </tr>
-        <?php while($row = mysqli_fetch_assoc($query)): ?>
+        <?php $no = 1;
+        while($row = mysqli_fetch_assoc($query)): ?>
         <tr>
-            <td><?= $row['id_siswa']; ?></td>
+            <td><?= $no++; ?></td>
             <td><?= $row['nm_siswa']; ?></td>
             <td><?= $row['nis_siswa']; ?></td>
             <td><?= $row['jk_siswa']; ?></td>

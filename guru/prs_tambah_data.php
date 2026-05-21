@@ -1,16 +1,13 @@
 <?php
 include "../koneksi.php";
 
-if (isset($_POST['proses'])) {
     $siswa = $_POST['id_siswa'];
     $jrs   = $_POST['id_jrs'];
     $kelas = $_POST['id_kelas'];
     $tgl   = $_POST['tgl_absen'];
+    $waktu   = $_POST['waktu'];
     $ket   = $_POST['kehadiran'];
 
-    $sql = "INSERT INTO absen (id_siswa, id_jrs, id_kelas, tgl_absen, kehadiran) VALUES ('$siswa', '$jrs', '$kelas', '$tgl', '$ket')";
-    
-    mysqli_query($conn, $sql);
+    mysqli_query($conn, "INSERT INTO absen (id_siswa, id_jrs, id_kelas, tgl_absen, waktu_absen, kehadiran) VALUES ('$siswa', '$jrs', '$kelas', '$tgl','$waktu', '$ket')");
     header("location:index.php");
-}
 ?>

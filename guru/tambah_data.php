@@ -8,6 +8,7 @@
         Jurusan ID: <input type="number" name="id_jrs"><br><br>
         Kelas ID: <input type="number" name="id_kelas"><br><br>
         Tanggal: <input type="date" name="tgl_absen"><br><br>
+        waktu: <input type="time" name="waktu"><br><br>
         Kehadiran: 
         <select name="kehadiran">
             <option value="hadir">Hadir</option>

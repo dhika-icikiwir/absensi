@@ -15,6 +15,7 @@ $query = mysqli_query($conn, "SELECT a.id_absen, a.waktu_absen, s.nm_siswa, j.nm
     <h3>Data Absensi</h3>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
+            <th>No</th>
             <th>Siswa</th>
             <th>Kelas</th>
             <th>Jurusan</th>
@@ -22,8 +23,11 @@ $query = mysqli_query($conn, "SELECT a.id_absen, a.waktu_absen, s.nm_siswa, j.nm
             <th>waktu</th>
             <th>Status</th>
         </tr>
-        <?php while($row = mysqli_fetch_assoc($query)): ?>
+        <?php $no = 1; 
+        
+        while($row = mysqli_fetch_assoc($query)): ?>
         <tr>
+            <td><?= $no++ ?></td>
             <td><?= $row['nm_siswa']; ?></td>
             <td><?= $row['nama_kelas']; ?></td>
             <td><?= $row['nm_jrs']; ?></td>

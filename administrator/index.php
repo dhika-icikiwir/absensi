@@ -1,6 +1,8 @@
 <?php
 include "../koneksi.php";
 // 1. Statistik (COUNT & SUM)
+$jumlah_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total_siswa FROM siswa"));
+
 $sql_stat = "SELECT 
     COUNT(*) as total, 
     SUM(kehadiran='hadir') as h,
@@ -23,7 +25,7 @@ $query = mysqli_query($conn, "SELECT a.id_absen, s.nm_siswa, j.nm_jrs, k.nama_ke
     <title>Administrator Dashboard</title>
 </head>
 <body>
-    <h2>Menu Administrator</h2>
+    <h2>Menu Administrator kelas XI RPL</h2>
     <p>
         <a href="index.php">Data Absen</a> | 
         <a href="siswa/index.php">Data Siswa</a> | 
@@ -32,7 +34,7 @@ $query = mysqli_query($conn, "SELECT a.id_absen, s.nm_siswa, j.nm_jrs, k.nama_ke
         <a href="user/index.php">Data User</a>
     </p>
     <hr>
-    <h3>Data Absensi</h3>
+    <h3>Data Absensi siswa XI RPL</h3>
 
     <!-- Tampilan Statistik -->
     <p>
@@ -40,12 +42,15 @@ $query = mysqli_query($conn, "SELECT a.id_absen, s.nm_siswa, j.nm_jrs, k.nama_ke
         Hadir: <?= $stat['h']; ?> | 
         Sakit: <?= $stat['s']; ?> | 
         Izin:  <?= $stat['i']; ?> | 
-        Alpa:  <?= $stat['a']; ?>
+        Alpa:  <?= $stat['a']; ?><br>
+        Total siswa RPL:  <?= $jumlah_siswa['total_siswa']; ?>
+        
     </p>
 
     <!-- Tabel Data -->
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
+            <th>No</th>
             <th>Siswa</th>
             <th>Kelas</th>
             <th>Jurusan</th>
@@ -54,8 +59,10 @@ $query = mysqli_query($conn, "SELECT a.id_absen, s.nm_siswa, j.nm_jrs, k.nama_ke
             <th>Status</th>
             <th>Aksi</th>
         </tr>
-        <?php while($row = mysqli_fetch_assoc($query)): ?>
+        <?php $no = 1;
+         while($row = mysqli_fetch_assoc($query)): ?>
         <tr>
+            <td><?= $no++; ?></td>
             <td><?= $row['nm_siswa']; ?></td>
             <td><?= $row['nama_kelas']; ?></td>
             <td><?= $row['nm_jrs']; ?></td>
@@ -70,7 +77,6 @@ $query = mysqli_query($conn, "SELECT a.id_absen, s.nm_siswa, j.nm_jrs, k.nama_ke
         <?php endwhile; ?>
     </table>
     <br>
-    <a href="tambah_data.php">Tambah Data Absen</a> | 
     <a href="../index.php">Logout</a>
 </body>
 </html>
